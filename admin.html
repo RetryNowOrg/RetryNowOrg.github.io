@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 대시보드</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="admin-page">
+      <div class="admin-shell">
+        <header class="admin-header">
+          <h1>관리자 대시보드</h1>
+          <a href="index.html" class="admin-link">메인 페이지</a>
+        </header>
+
+        <div class="admin-grid">
+          <section class="admin-panel">
+            <h2>관리자 로그인</h2>
+            <form id="admin-login-form" class="admin-login">
+              <input id="admin-email" type="email" placeholder="admin@example.com" required />
+              <input id="admin-password" type="password" placeholder="비밀번호" required />
+              <button type="submit" class="primary">로그인</button>
+            </form>
+            <div id="admin-status" class="admin-status">기본 관리자 계정: admin / Admin123!</div>
+          </section>
+
+          <section class="admin-panel">
+            <h2>현황</h2>
+            <div class="summary-box">
+              회원 수
+              <strong id="member-count">0</strong>
+            </div>
+            <div class="summary-box">
+              댓글 수
+              <strong id="comment-count-admin">0</strong>
+            </div>
+          </section>
+
+          <section class="admin-panel" style="grid-column: 1 / -1;">
+            <h2>회원 목록</h2>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>닉네임</th>
+                  <th>이메일</th>
+                  <th>권한</th>
+                  <th>가입일</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="user-table-body"></tbody>
+            </table>
+          </section>
+
+          <section class="admin-panel" style="grid-column: 1 / -1;">
+            <h2>댓글 목록</h2>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>작성자</th>
+                  <th>내용</th>
+                  <th>작성일</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="comment-table-body"></tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const USERS_KEY = "retryNowUsers";
+      const COMMENTS_KEY = "retryNowComments";
+      const SESSION_KEY = "retryNowSession";
+
+      const read = (key, fallback) => {
+        try {
+          const value = JSON.parse(localStorage.getItem(key));
+          return value ?? fallback;
+        } catch {
+          return fallback;
+        }
+      };
+
+      const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+      const currentUser = () => localStorage.getItem(SESSION_KEY);
+
+      function renderAdminDashboard() {
+        const users = read(USERS_KEY, []);
+        const comments = read(COMMENTS_KEY, []);
+
+        document.querySelector("#member-count").textContent = String(users.length);
+        document.querySelector("#comment-count-admin").textContent = String(comments.length);
+
+        const userTable = document.querySelector("#user-table-body");
+        userTable.innerHTML = "";
+
+        users.forEach((user) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.email}</td>
+            <td>${user.role || "member"}</td>
+            <td>${new Date(user.createdAt).toLocaleString("ko-KR")}</td>
+            <td><button type="button" data-user="${user.email}">삭제</button></td>
+          `;
+          userTable.append(row);
+        });
+
+        const commentTable = document.querySelector("#comment-table-body");
+        commentTable.innerHTML = "";
+
+        comments.forEach((comment) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${comment.user}</td>
+            <td>${comment.text}</td>
+            <td>${new Date(comment.createdAt).toLocaleString("ko-KR")}</td>
+            <td><button type="button" data-comment="${comment.createdAt}">삭제</button></td>
+          `;
+          commentTable.append(row);
+        });
+      }
+
+      document.addEventListener("click", (event) => {
+        if (event.target.matches("[data-user]")) {
+          const email = event.target.dataset.user;
+          const users = read(USERS_KEY, []).filter((user) => user.email !== email);
+          write(USERS_KEY, users);
+          renderAdminDashboard();
+        }
+
+        if (event.target.matches("[data-comment]")) {
+          const createdAt = Number(event.target.dataset.comment);
+          const comments = read(COMMENTS_KEY, []).filter((comment) => comment.createdAt !== createdAt);
+          write(COMMENTS_KEY, comments);
+          renderAdminDashboard();
+        }
+      });
+
+      document.querySelector("#admin-login-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const email = document.querySelector("#admin-email").value.trim().toLowerCase();
+        const password = document.querySelector("#admin-password").value;
+        const users = read(USERS_KEY, []);
+        const admin = users.find((user) => user.email === email && user.role === "admin");
+
+        if (admin && password === "Admin123!") {
+          localStorage.setItem(SESSION_KEY, admin.username);
+          document.querySelector("#admin-status").textContent = "관리자 로그인 완료";
+          renderAdminDashboard();
+        } else {
+          document.querySelector("#admin-status").textContent = "잘못된 관리자 정보입니다.";
+        }
+      });
+
+      renderAdminDashboard();
+    </script>
+  </body>
+</html>

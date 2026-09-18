@@ -8,7 +8,7 @@
     <meta name="author" content="RetryNow" />
     <meta property="og:title" content="이담비" />
     <meta property="og:description" content="RetryNow, MyLink-Kit." />
-    <meta property="og:image" content="https://retrynoworg.github.io/img/Screenshot_20260914-200720_KakaoTalk.jpg" />
+    <meta property="og:image" content="https://retrynoworg.github.io/img/profile.jpg" />
     <meta property="og:url" content="https://retrynoworg.github.io/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -21,7 +21,7 @@
     <main class="wrapper">
       <section class="content" aria-labelledby="profile-name">
         <div class="infoArea">
-          <div class="thumbBox"><img src="img/Screenshot_20260914-200720_KakaoTalk.jpg" alt="RetryNow" /></div>
+          <div class="thumbBox"><img src="img/profile.jpg" alt="RetryNow" /></div>
           <h1 id="profile-name" class="userName">이담비</h1>
           <h2 class="pageSubtitle">이담비</h2>
           <p class="sloganText">안녕하세요!<br />귀여운 소녀 이담비예요!<br />#RetryNow 💕</p>
@@ -34,23 +34,33 @@
           </ul>
         </div>
 
-        <section class="community" aria-labelledby="community-title">
-          <div class="section-heading"><h2 id="community-title">방명록</h2><span id="auth-status">로그인이 필요해요</span></div>
-          <div id="comments" class="comments" aria-live="polite"></div>
-          <form id="comment-form" class="comment-form" hidden>
-            <label for="comment-text">댓글</label>
-            <textarea id="comment-text" maxlength="300" required placeholder="따뜻한 말을 남겨주세요 (최대 300자)"></textarea>
-            <div class="form-row"><small><span id="comment-count">0</span>/300</small><button type="submit">댓글 남기기</button></div>
-          </form>
-          <p id="comment-login-hint" class="hint">댓글을 작성하려면 아래에서 회원가입을 완료해 주세요.</p>
-        </section>
-
         <div class="account-actions">
           <button id="signup-open" class="primary" type="button">회원가입</button>
           <button id="login-open" class="secondary" type="button">로그인</button>
           <button id="logout" class="secondary" type="button" hidden>로그아웃</button>
+          <a href="admin.html" class="admin-link secondary">관리자</a>
         </div>
-        <p class="demo-note">이 정적 사이트의 계정·댓글은 현재 이 브라우저에만 저장되는 데모입니다. 실제 서비스에서는 서버 인증과 데이터베이스를 연결하세요.</p>
+
+        <section class="community" aria-labelledby="community-title">
+          <div class="section-heading">
+            <h2 id="community-title">방명록</h2>
+            <span id="auth-status">로그인이 필요해요</span>
+          </div>
+          <div id="comments" class="comments" aria-live="polite"></div>
+
+          <form id="comment-form" class="comment-form" hidden>
+            <label for="comment-text">댓글</label>
+            <textarea id="comment-text" maxlength="300" required placeholder="따뜻한 말을 남겨주세요 (최대 300자)"></textarea>
+            <div class="form-row">
+              <small><span id="comment-count">0</span>/300</small>
+              <button type="submit">댓글 남기기</button>
+            </div>
+          </form>
+
+          <p id="comment-login-hint" class="hint">댓글을 작성하려면 아래에서 회원가입을 완료해 주세요.</p>
+        </section>
+
+        <p class="demo-note">이 정적 사이트는 브라우저 로컬 저장소에 회원과 댓글 정보를 저장하는 데모입니다. 실제 서비스는 서버 백엔드와 데이터베이스가 별도로 필요합니다.</p>
       </section>
     </main>
 
@@ -59,13 +69,15 @@
       <h2 id="dialog-title">안전한 회원가입</h2>
       <p class="step-label">단계 <span id="step-number">1</span> / 4</p>
       <div class="progress"><span id="progress-bar"></span></div>
+
       <form id="account-form" novalidate>
         <fieldset data-step="1">
           <legend>약관 동의</legend>
-          <p class="muted">서비스 이용을 위해 아래 내용을 확인해 주세요.</p>
+          <p class="muted">서비스 이용을 위해 아래 항목을 확인해 주세요.</p>
           <label class="check"><input id="terms" type="checkbox" required /> 이용약관과 개인정보 처리 안내에 동의합니다.</label>
           <label class="check"><input id="age" type="checkbox" required /> 만 14세 이상이며 가입 정보를 직접 입력합니다.</label>
         </fieldset>
+
         <fieldset data-step="2" hidden>
           <legend>계정 정보</legend>
           <label>닉네임<input id="username" minlength="2" maxlength="20" pattern="[가-힣A-Za-z0-9_]+" required autocomplete="username" /></label>
@@ -75,24 +87,31 @@
           <small>12자 이상이며 대문자·소문자·숫자·특수문자를 모두 포함해야 해요.</small>
           <label>비밀번호 확인<input id="password-confirm" type="password" required autocomplete="new-password" /></label>
         </fieldset>
+
         <fieldset data-step="3" hidden>
           <legend>본인 확인</legend>
-          <p class="muted">데모 환경에서는 이메일 발송 대신 아래 코드가 표시됩니다. 실제 운영 시에는 서버에서 이메일 인증을 구현해야 합니다.</p>
+          <p class="muted">아래 인증 코드를 입력해 주세요. 실제 운영 환경에서는 이메일/SMS 인증을 연결해야 합니다.</p>
           <div class="verification-code" id="verification-code" aria-live="polite"></div>
           <label>인증 코드<input id="verification-input" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required /></label>
-          <label class="check"><input id="privacy" type="checkbox" required /> 개인정보 수집 및 댓글 표시 방식을 확인했습니다.</label>
+          <label class="check"><input id="privacy" type="checkbox" required /> 개인정보 수집 및 댓글 표시에 동의합니다.</label>
         </fieldset>
+
         <fieldset data-step="4" hidden>
           <legend>마지막 확인</legend>
-          <p>자동 가입 방지를 위해 다음 계산 결과를 입력해 주세요.</p>
+          <p>자동 가입 방지를 위해 다음 계산을 입력해 주세요.</p>
           <p class="challenge" id="challenge-question"></p>
           <label>정답<input id="challenge-answer" inputmode="numeric" required /></label>
           <label class="check"><input id="community-rules" type="checkbox" required /> 서로 존중하는 댓글을 작성하겠습니다.</label>
         </fieldset>
+
         <p id="form-error" class="form-error" role="alert"></p>
-        <div class="dialog-actions"><button id="back-step" class="secondary" type="button" hidden>이전</button><button id="next-step" class="primary" type="button">다음</button></div>
+        <div class="dialog-actions">
+          <button id="back-step" class="secondary" type="button" hidden>이전</button>
+          <button id="next-step" class="primary" type="button">다음</button>
+        </div>
       </form>
     </dialog>
+
     <script src="script.js"></script>
   </body>
 </html>
