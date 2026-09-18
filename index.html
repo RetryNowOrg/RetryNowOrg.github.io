@@ -1,68 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 
-웹사이트 내에 한국어를 사용할 예정이라면 그대로 두시면 됩니다.
-세종대왕 만세 만세 만만세 :)
-
-html lang Examples: Korean 'ko', English 'en'
-find IETF language tags for lang attr 
-https://en.wikipedia.org/wiki/IETF_language_tag 
--->
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>so3i_plays</title>
-        <!-- 
-        'so3i_plays'를 당신의 사이트/채널 이름으로 변경하세요.
-        타이틀 태그는 브라우저 탭에 표시되는 페이지 제목입니다.
-
-        The title tag defines the title shown in browser tabs and search results.
-        Change 'so3i_plays' to your site/channel name.
-
-        ex ) <title>your site name</title>
-        -->
-        <meta name="description" content="나만의 링크 모음 사이트, MyLink-Kit"> 
-        <meta name="author" content="so3i">
+        <title>이담비</title>
+        <meta name="description" content="RetryNow", MyLink-Kit"> 
+        <meta name="author" content="RetryNow">
         <meta property="og:title" content="MyLink-Kit">
-        <meta property="og:description" content="나만의 링크 모음 사이트, MyLink-Kit.">
-        <meta property="og:image" content="https://so3i.github.io/img/profile.jpg">
-        <meta property="og:url" content="https://so3i.github.io/">
+        <meta property="og:description" content="RetryNow, MyLink-Kit.">
+        <meta property="og:image" content="https://retrynoworg.github.io/img/profile.jpg">
+        <meta property="og:url" content="https://retrynoworg.github.io/">
         <meta name="twitter:card" content="summary_large_image">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <!--
-        위의 meta 태그는 검색 정보 제공 및 sns 공유시 필요한 정보입니다.
-        title에는 원하는 페이지의 제목을,
-        author 에는 본인의 이름을
-        description에는 원하는 설명을,
-        image에는 이 사이트가 sns에 공유될때 노출되길 원하는 이미지를 넣으시면 되는데,
-        https://로 시작하는 절대 경로를 입력하셔야해요!! (중요)
-        url에는 당신의 주소를 입력하면 됩니다.
-        favicon은 원하는 이미지를 favicon.io같은 사이트에서 ico 파일로 변환한 뒤 기존의 파일을 덮어쓰세요.
-            파일 업로드는 https://github.com/[username]/[username].github.io/ 페이지에서 add file을 눌러 하실 수 있습니다.
-
-        These meta tags provide necessary information for search engines and social media sharing. 
-        For title, enter the desired page title. 
-        For author, enter your name. 
-        For description, enter your desired description. 
-        For image, insert the image you wish to expose when this site is shared on social media. 
-            Please ensure you enter an absolute path starting with https://. 
-        For url, enter your address. 
-        For favicon, convert your desired image to an .ico file using sites like favicon.io, then overwrite the existing file. 
-            File uploads can be done by clicking 'Add file' on the https://github.com/[username]/[username].github.io/ page.
-        -->
-       
+        <link rel="icon" href="favicon.ico" type="image/x-icon"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-        <!-- 
-        사이트에서 사용될 폰트를 위한 세 줄입니다. 
-        만약 이 세 줄을 지우면 해당 페이지의 폰트는 기본 폰트가 됩니다. 
-        폰트를 변경하고 싶다면 구글폰트에서 원하는 폰트를 선택한 뒤 임베드 예시를 참고하세요.
-
-        These three lines are for the font used on this website.
-        If these lines are deleted, the page's font will revert to the default font.
-        If you wish to change the font, please select your desired font from Google Fonts and refer to its embed example.
-
+        <
+        
         Google Fonts link : https://fonts.google.com/
         -->
         <style>
@@ -71,97 +25,19 @@ https://en.wikipedia.org/wiki/IETF_language_tag
               --point-font: "Jua", serif;
             }
         </style>
-        <!--
-            사이트에 사용될 폰트를 선언한 부분입니다. 
-            위에서 다른 구글폰트를 임베드하셨다면 구글폰트에서 제공하는 예시에 맞게 폰트를 변경해주세요. 
-            --point-font 는 페이지 내 썸네일 아래 있는 이름에 사용된 폰트고 나머지는 --main-font를 사용합니다.
-
-            This section declares fonts used on the site. 
-            If you've embedded different Google Fonts above, please update the fonts according to the examples provided by Google Fonts. 
-            The --point-font is used for names below thumbnails on the page, while everything else uses the --main-font.
-        -->
         <link rel="stylesheet" href="styles.css" />
-        <!--
-        절대 지워선 안됩니다. 이 페이지의 모든 디자인 스타일을 지정합니다. 
-        보다 자세한 커스텀을 원한다면 style.css 파일을 확인하세요.
-
-        Do NOT delete this. This line defines all the design styles for this page.
-        For more detailed customization, please check the 'style.css' file.
-        -->
-         <script src="https://kit.fontawesome.com/cc0a79e810.js" crossorigin="anonymous"></script>
-        <!-- 
-        폰트 어썸 아이콘 사용 (소셜 미디어 아이콘 등)
-        이 코드는 웹페이지에 다양한 아이콘(예: 인스타그램, X 로고 등)을 표시하기 위해 필요합니다.
-        아이콘을 사용하지 않을 예정이라면 이 줄을 삭제해도 좋습니다.
-        하지만 이 코드를 삭제할 경우 웹페이지에 아이콘이 나타나지 않습니다.
-
-        Font Awesome Icons (e.g., social media icons)
-        This code is necessary to display various icons (e.g., Instagram, X logos) on your webpage.
-        You can safely delete this line if you do not plan to use any icons.
-        However, if you delete this code, icons will not appear on your webpage.
-        -->
     </head>
     <body>
-        <!-- 
-        주의: 웹 페이지의 구조를 크게 변경할 예정이 아니라면,
-        body 태그 내에서 주석으로 명시된 부분을 제외하고는 이 파일의 코드를 수정하지 마세요.
-        대부분의 디자인 변경은 'styles.css' 파일에서 가능합니다.
-
-        Caution: Unless you intend to significantly alter the web page's structure,
-        do not modify the code in this file within the body tag, except for areas
-        explicitly indicated by comments. Most design changes can be made in the 'styles.css' file.
-        -->
         <div class="wrapper">
             <div class="content">
                 <div class="infoArea">
                     <div class="thumbBox">
-                        <img src="img/profile.jpg" alt="so3i" />
-                        <!-- 
-                        img 폴더안에 이미지를 넣은 후 해당 이름과 확장자로 변경하거나 
-                        profile.jpg -> mynewprofile.png
-                        귀찮다면 그냥 img 폴더안의 profile.jpg 파일을 덮어써도 좋습니다.
-
-                        이미지의 크기는 최소 200px X 200px (가로 X 세로) 이상이 되어야 모바일에서도 선명하게 확인할 수 있습니다.
-                        권장: 600px X 600px 에서 800px X 800px (정사각형)
-                        파일크기에 제한은 없지만 파일크기가 클수록 이미지 로딩 시간이 길어질 수 있습니다.
-
-                        파일을 직접 업로드하지 않고 기존에 사용하던 프로필 사진의 이미지 주소를 복사하여 사용할 수 있습니다.
-                        예시: <img src="https://so3i.github.io/img/profile.jpg" alt="소미" />
-
-                        alt 는 스크린리더가 화면을 읽는데 도움을 주는 태그입니다. 
-                        이미지를 볼 수 없는 사용자도 음성으로 내용을 확인할 수 있도록 당신의 이름을 입력해주세요.
-
-
-                        To change the profile picture, place your image in the 'img' folder and update its name and extension
-                        (e.g., profile.jpg -> mynewprofile.png).
-                        Alternatively, you can simply overwrite the 'profile.jpg' file within the 'img' folder.
-
-                        The image size should be at least 200px X 200px (width X height) for clarity on mobile devices.
-                        Recommended: 600px X 600px to 800px X 800px (square).
-                        While there's no file size limit, larger files may increase image loading time.
-
-                        You can also use an existing profile picture by copying its image URL instead of directly uploading a file.
-                        Example: <img src="https://so3i.github.io/img/profile.jpg" alt="so3i" />
-
-                        The 'alt' attribute helps screen readers interpret the screen.
-                        Please enter your name here so that users who cannot see the image can understand its content through audio.
-                        -->
+                        <img src="img/profile.jpg" alt="RetryNow" />
                     </div>
-                    <h1 class="userName">so3i</h1>
-                    <!-- h1태그 사이에 당신의 이름을 입력하세요. Enter your name between the <h1> tags. <h1 class="userName">[username]</h1> -->
-                    <h2 class="pageSubtitle">so3i_plays</h2>
-                    <!--
-                        h2 태그 사이에 당신의 소속을 표시하거나 브랜드이름을 표시하세요. 필요 없는 경우 지우셔도 됩니다. 
-                        Display your affiliation or brand name between the <h2> tags. You can delete it if not needed.
-                        <h2 class="pageSubtitle">[username]</h2>
-                    -->
+                    <h1 class="userName">이담비</h1>
+                    <h2 class="pageSubtitle">이담비</h2>
                     <div class="sloganText">
-                        안녕하세요<i>!</i><br />생산적인 play를 사랑하는 소미예요. <br />#PlayWith3e 💕
-                        <!--
-                            div 태그 사이에 당신의 text를 적으세요. 줄바꿈은 <br />을 사용해야 합니다.
-                            Enter your text between the div tags. Use <br /> for line breaks. 
-                            <div class="sloganText">[text]</div>
-                        -->
+                        
                     </div>
                 </div>
                 <div class="linkArea">
